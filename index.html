@@ -3,195 +3,255 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>“Hi! It’s me, Kaviranga.”</title>
+<title>Hi! It’s me, Kaviranga.</title>
 
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+/* ================= CINNAMON THEME ================= */
 :root {
-  --bg: #0f172a;
-  --card: #020617;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --accent: #38bdf8;
+  --desktop-bg: #d7d7d7;
+  --panel-bg: #2e3436;
+  --panel-text: #eeeeec;
+
+  --window-bg: #f6f6f6;
+  --window-border: #bfbfbf;
+  --window-title-bg: #e2e2e2;
+  --window-title-text: #2e3436;
+
+  --text: #2e3436;
+  --muted: #6b7280;
+  --accent: #4db84d; /* Cinnamon / Mint green */
 }
 
-body.light {
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #020617;
-  --muted: #475569;
-  --accent: #0284c7;
+/* ================= GLOBAL ================= */
+* {
+  box-sizing: border-box;
 }
-
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  background: var(--bg);
+  font-family: "Ubuntu", system-ui, sans-serif;
+  background: var(--desktop-bg);
   color: var(--text);
-  transition: background .3s, color .3s;
 }
 
-.container {
-  max-width: 900px;
+/* ================= TOP PANEL ================= */
+.panel {
+  height: 40px;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.panel .left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.panel .menu {
+  background: var(--accent);
+  color: #0f172a;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.panel .right i {
+  margin-left: 0.8rem;
+}
+
+/* ================= DESKTOP ================= */
+.desktop {
+  padding: 2rem;
+  max-width: 1100px;
   margin: auto;
-  padding: 2rem 1rem;
 }
 
-/* ---------- CARD ---------- */
-.card {
-  background: var(--card);
-  padding: 2.5rem;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,.35);
-  animation: fadeUp .8s ease;
+/* ================= WINDOW ================= */
+.window {
+  background: var(--window-bg);
+  border: 1px solid var(--window-border);
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+  margin-bottom: 2rem;
+  overflow: hidden;
 }
 
-img.profile {
-  width: 130px;
-  height: 130px;
+/* Title bar */
+.window-title {
+  background: var(--window-title-bg);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--window-title-text);
+}
+
+.window-controls span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  object-fit: cover;
+  margin-left: 6px;
+}
+
+.window-controls .close { background: #e5533d; }
+.window-controls .min { background: #e5c07b; }
+.window-controls .max { background: #4db84d; }
+
+/* Window content */
+.window-content {
+  padding: 2rem;
+}
+
+/* ================= PROFILE ================= */
+.profile {
+  text-align: center;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   border: 4px solid var(--accent);
+  object-fit: cover;
   margin-bottom: 1rem;
 }
 
-.title {
+.profile .title {
   color: var(--muted);
   margin-bottom: 1rem;
 }
 
 .social a {
   color: var(--accent);
-  margin: 0 .6rem;
   font-size: 1.4rem;
+  margin: 0 0.5rem;
 }
 
-/* ---------- BUTTONS ---------- */
+/* ================= BUTTON ================= */
 button {
   background: var(--accent);
-  color: #020617;
   border: none;
-  padding: .7rem 1.2rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
+  color: #0f172a;
 }
 
-.toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
+button:hover {
+  filter: brightness(0.95);
 }
 
-/* ---------- PROJECTS ---------- */
-.projects {
-  margin-top: 3rem;
-  animation: fadeUp 1s ease;
-}
-
-.projects h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.project-grid {
+/* ================= PROJECTS ================= */
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.2rem;
 }
 
 .project {
-  background: var(--card);
-  padding: 1.5rem;
-  border-radius: 14px;
-  transition: transform .2s;
-}
-
-.project:hover {
-  transform: translateY(-4px);
+  border: 1px solid var(--window-border);
+  border-radius: 6px;
+  padding: 1rem;
+  background: #ffffff;
 }
 
 .project p {
+  font-size: 0.9rem;
   color: var(--muted);
-  font-size: .9rem;
-}
-
-/* ---------- ANIMATIONS ---------- */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
 
 <body>
-<button class="toggle" onclick="toggleTheme()">🌙</button>
 
-<div class="container">
-
-  <!-- PROFILE CARD -->
-  <div class="card">
-    <img src="img/duminda_profile_pic.png" alt="Duminda" class="profile">
-    <h1>Duminda Kaviranga Gunawardhana</h1>
-    <p class="title">Computer Engineer • Developer</p>
-
-    <div class="social">
-      <a href="https://github.com/kaviranga"><i class="fa fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/kaviranga/"><i class="fa fa-linkedin"></i></a>
-      <a href="https://twitter.com/kaviranga"><i class="fa fa-twitter"></i></a>
-    </div>
-
-    <p style="margin-top:1.5rem">
-      <button onclick="location.href='mailto:your@email.com'">Contact</button>
-    </p>
+<!-- TOP PANEL -->
+<div class="panel">
+  <div class="left">
+    <div class="menu">Menu</div>
+    <span>Desktop</span>
   </div>
-
-  <!-- PROJECTS -->
-  <section class="projects">
-    <h2>Projects</h2>
-    <div class="project-grid">
-
-      <div class="project">
-        <h3>Personal Website</h3>
-        <p>My GitHub Pages portfolio built with HTML & CSS.</p>
-      </div>
-
-      <div class="project">
-        <h3>Blog Platform</h3>
-        <p>Technical blog sharing engineering and coding ideas.</p>
-      </div>
-
-      <div class="project">
-        <h3>Open Source Tools</h3>
-        <p>Small utilities and experiments on GitHub.</p>
-      </div>
-
-    </div>
-  </section>
-
+  <div class="right">
+    <i class="fa fa-wifi"></i>
+    <i class="fa fa-volume-up"></i>
+    <i class="fa fa-battery-full"></i>
+    <span>12:45</span>
+  </div>
 </div>
 
-<script>
-function toggleTheme() {
-  document.body.classList.toggle("light");
-  localStorage.theme = document.body.classList.contains("light") ? "light" : "dark";
-}
+<!-- DESKTOP AREA -->
+<div class="desktop">
 
-// Load saved theme
-if (localStorage.theme === "light") {
-  document.body.classList.add("light");
-}
-</script>
+  <!-- PROFILE WINDOW -->
+  <div class="window">
+    <div class="window-title">
+      <span>About Me</span>
+      <div class="window-controls">
+        <span class="min"></span>
+        <span class="max"></span>
+        <span class="close"></span>
+      </div>
+    </div>
+    <div class="window-content profile">
+      <img src="img/duminda_profile_pic.png" alt="Duminda">
+      <h1>Duminda Kaviranga Gunawardhana</h1>
+      <p class="title">Computer Engineer • Developer</p>
+
+      <div class="social">
+        <a href="https://github.com/kaviranga"><i class="fa fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/kaviranga/"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/kaviranga"><i class="fa fa-twitter"></i></a>
+      </div>
+
+      <p style="margin-top:1.5rem">
+        <button onclick="location.href='mailto:your@email.com'">Contact</button>
+      </p>
+    </div>
+  </div>
+
+  <!-- PROJECTS WINDOW -->
+  <div class="window">
+    <div class="window-title">
+      <span>Projects</span>
+      <div class="window-controls">
+        <span class="min"></span>
+        <span class="max"></span>
+        <span class="close"></span>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="projects-grid">
+
+        <div class="project">
+          <h3>Personal Website</h3>
+          <p>My GitHub Pages portfolio built with HTML & CSS.</p>
+        </div>
+
+        <div class="project">
+          <h3>Blog Platform</h3>
+          <p>Technical blog sharing engineering and coding ideas.</p>
+        </div>
+
+        <div class="project">
+          <h3>Open Source Tools</h3>
+          <p>Small utilities and experiments on GitHub.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>
