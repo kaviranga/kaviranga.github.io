@@ -1,184 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Cinnamon Web Desktop</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hi! It’s me, Kaviranga.</title>
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-/* ================= THEME ================= */
+/* ================= CINNAMON LIGHT ================= */
 :root {
-  --bg: #d7d7d7;
-  --panel: #2e3436;
-  --panel-text: #eee;
-  --window: #f6f6f6;
-  --border: #bfbfbf;
-  --title: #e2e2e2;
+  --desktop-bg: #d7d7d7;
+  --panel-bg: #2e3436;
+  --panel-text: #eeeeec;
+
+  --window-bg: #f6f6f6;
+  --window-border: #bfbfbf;
+  --window-title-bg: #e2e2e2;
+  --window-title-text: #2e3436;
+
   --text: #2e3436;
+  --muted: #6b7280;
   --accent: #4db84d;
 }
 
+/* ================= CINNAMON DARK ================= */
 body.dark {
-  --bg: #2b2b2b;
-  --panel: #1f1f1f;
+  --desktop-bg: #2b2b2b;
+  --panel-bg: #1f1f1f;
   --panel-text: #f0f0f0;
-  --window: #3a3a3a;
-  --border: #555;
-  --title: #444;
-  --text: #eee;
+
+  --window-bg: #3a3a3a;
+  --window-border: #555;
+  --window-title-bg: #444;
+  --window-title-text: #f0f0f0;
+
+  --text: #e5e7eb;
+  --muted: #a1a1aa;
+  --accent: #6fdc6f;
 }
 
-/* ================= BASE ================= */
+/* ================= GLOBAL ================= */
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: Ubuntu, system-ui, sans-serif;
-  background: var(--bg);
+  font-family: "Ubuntu", system-ui, sans-serif;
+  background: var(--desktop-bg);
   color: var(--text);
-  overflow: hidden;
+  transition: background .3s, color .3s;
 }
 
-/* ================= PANEL ================= */
+/* ================= TOP PANEL ================= */
 .panel {
   height: 40px;
-  background: var(--panel);
+  background: var(--panel-bg);
   color: var(--panel-text);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1rem;
+  font-size: 0.9rem;
 }
 
-.menu-btn {
+.panel .left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.menu {
   background: var(--accent);
+  color: #0f172a;
   padding: 4px 10px;
   border-radius: 4px;
-  cursor: pointer;
   font-weight: 600;
 }
 
-.panel-right i {
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-/* ================= START MENU ================= */
-.start-menu {
-  position: absolute;
-  bottom: 40px;
-  left: 10px;
-  width: 220px;
-  background: var(--window);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  display: none;
-  box-shadow: 0 15px 30px rgba(0,0,0,.3);
-}
-
-.start-menu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.start-menu li {
-  padding: 10px;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-
-.start-menu li:hover {
-  background: var(--accent);
-  color: #000;
-}
-
-/* ================= WORKSPACES ================= */
-.workspaces {
+.panel .right {
   display: flex;
-  width: 200%;
-  height: calc(100vh - 40px);
-  transition: transform .5s ease;
+  align-items: center;
+  gap: 0.8rem;
 }
 
-.workspace {
-  width: 50%;
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--panel-text);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ================= DESKTOP ================= */
+.desktop {
   padding: 2rem;
-  position: relative;
+  max-width: 1100px;
+  margin: auto;
 }
 
 /* ================= WINDOW ================= */
 .window {
-  position: absolute;
-  width: 320px;
-  background: var(--window);
-  border: 1px solid var(--border);
+  background: var(--window-bg);
+  border: 1px solid var(--window-border);
   border-radius: 8px;
-  box-shadow: 0 15px 30px rgba(0,0,0,.3);
+  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+  margin-bottom: 2rem;
+  overflow: hidden;
 }
 
-.titlebar {
-  background: var(--title);
-  padding: 8px;
-  cursor: move;
+.window-title {
+  background: var(--window-title-bg);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 600;
+  color: var(--window-title-text);
 }
 
-.content {
+.window-controls span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+
+.close { background: #e5533d; }
+.min { background: #e5c07b; }
+.max { background: var(--accent); }
+
+.window-content {
+  padding: 2rem;
+}
+
+/* ================= PROFILE ================= */
+.profile {
+  text-align: center;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.title {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.social a {
+  color: var(--accent);
+  font-size: 1.4rem;
+  margin: 0 0.5rem;
+}
+
+/* ================= BUTTON ================= */
+button {
+  background: var(--accent);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ================= PROJECTS ================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.project {
+  border: 1px solid var(--window-border);
+  border-radius: 6px;
   padding: 1rem;
+  background: rgba(255,255,255,.85);
 }
 
-/* ================= ANIMATION ================= */
-.hidden { display: none; }
+body.dark .project {
+  background: rgba(0,0,0,.25);
+}
+
+.project p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
 </style>
 </head>
 
 <body>
 
-<!-- PANEL -->
+<!-- TOP PANEL -->
 <div class="panel">
-  <div class="menu-btn" onclick="toggleMenu()">Menu</div>
-  <div class="panel-right">
-    <i class="fa fa-adjust" onclick="toggleTheme()"></i>
+  <div class="left">
+    <div class="menu">Menu</div>
+    <span>Desktop</span>
+  </div>
+
+  <div class="right">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <i id="themeIcon" class="fa fa-moon-o"></i>
+    </button>
     <i class="fa fa-wifi"></i>
     <i class="fa fa-volume-up"></i>
+    <i class="fa fa-battery-full"></i>
+    <span>12:45</span>
   </div>
 </div>
 
-<!-- START MENU -->
-<div class="start-menu" id="menu">
-  <ul>
-    <li onclick="alert('About clicked')">About</li>
-    <li onclick="alert('Projects clicked')">Projects</li>
-    <li onclick="toggleTheme()">Toggle Theme</li>
-    <li onclick="alert('Logout')">Logout</li>
-  </ul>
-</div>
+<!-- DESKTOP -->
+<div class="desktop">
 
-<!-- WORKSPACES -->
-<div class="workspaces" id="workspaces">
-
-  <!-- WORKSPACE 1 -->
-  <div class="workspace">
-    <div class="window" style="top:60px;left:60px;">
-      <div class="titlebar">About Me</div>
-      <div class="content">
-        <h3>Duminda Kaviranga</h3>
-        <p>Computer Engineer • Developer</p>
+  <!-- PROFILE WINDOW -->
+  <div class="window">
+    <div class="window-title">
+      <span>About Me</span>
+      <div class="window-controls">
+        <span class="min"></span>
+        <span class="max"></span>
+        <span class="close"></span>
       </div>
+    </div>
+    <div class="window-content profile">
+      <img src="img/duminda_profile_pic.png" alt="Duminda">
+      <h1>Duminda Kaviranga Gunawardhana</h1>
+      <p class="title">Computer Engineer • Developer</p>
+
+      <div class="social">
+        <a href="https://github.com/kaviranga"><i class="fa fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/kaviranga/"><i class="fa fa-linkedin"></i></a>
+        <a href="https://twitter.com/kaviranga"><i class="fa fa-twitter"></i></a>
+      </div>
+
+      <p style="margin-top:1.5rem">
+        <button onclick="location.href='mailto:your@email.com'">Contact</button>
+      </p>
     </div>
   </div>
 
-  <!-- WORKSPACE 2 -->
-  <div class="workspace">
-    <div class="window" style="top:80px;left:100px;">
-      <div class="titlebar">Projects</div>
-      <div class="content">
-        <p>Personal Website</p>
-        <p>Open Source Tools</p>
+  <!-- PROJECTS WINDOW -->
+  <div class="window">
+    <div class="window-title">
+      <span>Projects</span>
+      <div class="window-controls">
+        <span class="min"></span>
+        <span class="max"></span>
+        <span class="close"></span>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="projects-grid">
+        <div class="project">
+          <h3>Personal Website</h3>
+          <p>My GitHub Pages portfolio built with HTML & CSS.</p>
+        </div>
+        <div class="project">
+          <h3>Blog Platform</h3>
+          <p>Technical blog sharing engineering and coding ideas.</p>
+        </div>
+        <div class="project">
+          <h3>Open Source Tools</h3>
+          <p>Small utilities and experiments on GitHub.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -186,53 +277,26 @@ body {
 </div>
 
 <script>
-/* ================= THEME ================= */
 function toggleTheme() {
-  document.body.classList.toggle("dark");
+  const body = document.body;
+  const icon = document.getElementById("themeIcon");
+
+  body.classList.toggle("dark");
+
+  if (body.classList.contains("dark")) {
+    icon.className = "fa fa-sun-o";
+    localStorage.setItem("theme", "dark");
+  } else {
+    icon.className = "fa fa-moon-o";
+    localStorage.setItem("theme", "light");
+  }
 }
 
-/* ================= MENU ================= */
-function toggleMenu() {
-  const menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+/* Load saved theme */
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  document.getElementById("themeIcon").className = "fa fa-sun-o";
 }
-
-/* ================= WORKSPACES ================= */
-let currentWS = 0;
-function switchWorkspace(i) {
-  currentWS = i;
-  document.getElementById("workspaces").style.transform =
-    `translateX(-${i * 50}%)`;
-}
-
-/* ================= DRAG WINDOWS ================= */
-document.querySelectorAll(".window").forEach(win => {
-  const bar = win.querySelector(".titlebar");
-  let x=0,y=0,dx=0,dy=0;
-
-  bar.onmousedown = e => {
-    dx = e.clientX;
-    dy = e.clientY;
-    document.onmousemove = ev => {
-      x = dx - ev.clientX;
-      y = dy - ev.clientY;
-      dx = ev.clientX;
-      dy = ev.clientY;
-      win.style.top = (win.offsetTop - y) + "px";
-      win.style.left = (win.offsetLeft - x) + "px";
-    };
-    document.onmouseup = () => document.onmousemove = null;
-  };
-});
-
-/* ================= SHORTCUTS ================= */
-document.addEventListener("keydown", e => {
-  if (e.altKey && e.key === "1") switchWorkspace(0);
-  if (e.altKey && e.key === "2") switchWorkspace(1);
-  if (e.altKey && e.key.toLowerCase() === "m") toggleMenu();
-  if (e.altKey && e.key.toLowerCase() === "d") toggleTheme();
-  if (e.key === "Escape") document.getElementById("menu").style.display="none";
-});
 </script>
 
 </body>
