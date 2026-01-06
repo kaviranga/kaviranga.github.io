@@ -6,39 +6,39 @@
 <title>Hi! It’s me, Kaviranga.</title>
 
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-/* ================= CINNAMON LIGHT ================= */
+/* ================= UBUNTU GNOME (YARU) ================= */
 :root {
-  --desktop-bg: #d7d7d7;
-  --panel-bg: #2e3436;
-  --panel-text: #eeeeec;
+  --desktop-bg: #f6f5f4;
+  --panel-bg: #2c001e;
+  --panel-text: #ffffff;
 
-  --window-bg: #f6f6f6;
-  --window-border: #bfbfbf;
-  --window-title-bg: #e2e2e2;
-  --window-title-text: #2e3436;
+  --window-bg: #ffffff;
+  --window-border: #d3d3d3;
+  --window-title-bg: #f6f5f4;
+  --window-title-text: #2c001e;
 
-  --text: #2e3436;
-  --muted: #6b7280;
-  --accent: #4db84d;
+  --text: #2c001e;
+  --muted: #6b6b6b;
+  --accent: #e95420;
 }
 
-/* ================= CINNAMON DARK ================= */
+/* ================= DARK MODE ================= */
 body.dark {
-  --desktop-bg: #2b2b2b;
-  --panel-bg: #1f1f1f;
-  --panel-text: #f0f0f0;
+  --desktop-bg: #1e1e1e;
+  --panel-bg: #000000;
+  --panel-text: #ffffff;
 
-  --window-bg: #3a3a3a;
-  --window-border: #555;
-  --window-title-bg: #444;
-  --window-title-text: #f0f0f0;
+  --window-bg: #2b2b2b;
+  --window-border: #3c3c3c;
+  --window-title-bg: #303030;
+  --window-title-text: #ffffff;
 
-  --text: #e5e7eb;
-  --muted: #a1a1aa;
-  --accent: #6fdc6f;
+  --text: #eeeeee;
+  --muted: #b5b5b5;
+  --accent: #ff7a45;
 }
 
 /* ================= GLOBAL ================= */
@@ -46,55 +46,40 @@ body.dark {
 
 body {
   margin: 0;
-  font-family: "Ubuntu", system-ui, sans-serif;
+  font-family: "Ubuntu", "Cantarell", system-ui, sans-serif;
   background: var(--desktop-bg);
   color: var(--text);
-  transition: background .3s, color .3s;
+  transition: background .25s ease, color .25s ease;
 }
 
-/* ================= TOP PANEL ================= */
+/* ================= TOP BAR ================= */
 .panel {
-  height: 40px;
+  height: 32px;
   background: var(--panel-bg);
   color: var(--panel-text);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
-  font-size: 0.9rem;
-}
-
-.panel .left {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.menu {
-  background: var(--accent);
-  color: #0f172a;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 600;
+  padding: 0 0.8rem;
+  font-size: 0.85rem;
 }
 
 .panel .right {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.7rem;
 }
 
 .theme-toggle {
   background: none;
   border: none;
   color: var(--panel-text);
-  font-size: 1.1rem;
   cursor: pointer;
 }
 
 /* ================= DESKTOP ================= */
 .desktop {
-  padding: 2rem;
+  padding: 2.5rem;
   max-width: 1100px;
   margin: auto;
 }
@@ -103,36 +88,56 @@ body {
 .window {
   background: var(--window-bg);
   border: 1px solid var(--window-border);
-  border-radius: 8px;
-  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
   margin-bottom: 2rem;
   overflow: hidden;
 }
 
 .window-title {
   background: var(--window-title-bg);
-  padding: 0.6rem 1rem;
+  padding: 0.45rem 0.7rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.6rem;
   font-weight: 600;
   color: var(--window-title-text);
+  border-bottom: 1px solid var(--window-border);
+}
+
+/* ===== GNOME WINDOW BUTTONS ===== */
+.window-controls {
+  display: flex;
+  gap: 0.25rem;
 }
 
 .window-controls span {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-left: 6px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--window-title-text);
+  cursor: pointer;
 }
 
-.close { background: #e5533d; }
-.min { background: #e5c07b; }
-.max { background: var(--accent); }
+.window-controls span:hover {
+  background: rgba(0,0,0,.08);
+}
 
+body.dark .window-controls span:hover {
+  background: rgba(255,255,255,.12);
+}
+
+.min::before { content: "–"; }
+.max::before { content: "▢"; }
+.close::before { content: "✕"; }
+
+/* ================= CONTENT ================= */
 .window-content {
-  padding: 2rem;
+  padding: 1.8rem;
 }
 
 /* ================= PROFILE ================= */
@@ -143,32 +148,34 @@ body {
 .profile img {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  border: 4px solid var(--accent);
-  object-fit: cover;
+  border-radius: 100%;
+  border: 3px solid var(--accent);
   margin-bottom: 1rem;
 }
 
 .title {
   color: var(--muted);
-  margin-bottom: 1rem;
 }
 
 .social a {
   color: var(--accent);
-  font-size: 1.4rem;
-  margin: 0 0.5rem;
+  font-size: 1.3rem;
+  margin: 0 0.4rem;
 }
 
 /* ================= BUTTON ================= */
 button {
   background: var(--accent);
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
+  padding: 0.6rem 1.3rem;
+  border-radius: 4px;
+  color: white;
   font-weight: 600;
-  color: #0f172a;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
 }
 
 /* ================= PROJECTS ================= */
@@ -182,11 +189,11 @@ button {
   border: 1px solid var(--window-border);
   border-radius: 6px;
   padding: 1rem;
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.9);
 }
 
 body.dark .project {
-  background: rgba(0,0,0,.25);
+  background: rgba(0,0,0,.35);
 }
 
 .project p {
@@ -198,15 +205,11 @@ body.dark .project {
 
 <body>
 
-<!-- TOP PANEL -->
+<!-- TOP BAR -->
 <div class="panel">
-  <div class="left">
-    <div class="menu">Menu</div>
-    <span>Desktop</span>
-  </div>
-
+  <span>Activities</span>
   <div class="right">
-    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+    <button class="theme-toggle" onclick="toggleTheme()">
       <i id="themeIcon" class="fa fa-moon-o"></i>
     </button>
     <i class="fa fa-wifi"></i>
@@ -216,19 +219,19 @@ body.dark .project {
   </div>
 </div>
 
-<!-- DESKTOP -->
 <div class="desktop">
 
-  <!-- PROFILE WINDOW -->
+  <!-- ABOUT -->
   <div class="window">
     <div class="window-title">
-      <span>About Me</span>
       <div class="window-controls">
+        <span class="close"></span>
         <span class="min"></span>
         <span class="max"></span>
-        <span class="close"></span>
       </div>
+      <span>About Me</span>
     </div>
+
     <div class="window-content profile">
       <img src="img/duminda_profile_pic.png" alt="Duminda">
       <h1>Duminda Kaviranga Gunawardhana</h1>
@@ -246,16 +249,17 @@ body.dark .project {
     </div>
   </div>
 
-  <!-- PROJECTS WINDOW -->
+  <!-- PROJECTS -->
   <div class="window">
     <div class="window-title">
-      <span>Projects</span>
       <div class="window-controls">
+        <span class="close"></span>
         <span class="min"></span>
         <span class="max"></span>
-        <span class="close"></span>
       </div>
+      <span>Projects</span>
     </div>
+
     <div class="window-content">
       <div class="projects-grid">
         <div class="project">
@@ -282,17 +286,13 @@ function toggleTheme() {
   const icon = document.getElementById("themeIcon");
 
   body.classList.toggle("dark");
+  icon.className = body.classList.contains("dark")
+    ? "fa fa-sun-o"
+    : "fa fa-moon-o";
 
-  if (body.classList.contains("dark")) {
-    icon.className = "fa fa-sun-o";
-    localStorage.setItem("theme", "dark");
-  } else {
-    icon.className = "fa fa-moon-o";
-    localStorage.setItem("theme", "light");
-  }
+  localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
 }
 
-/* Load saved theme */
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
   document.getElementById("themeIcon").className = "fa fa-sun-o";
