@@ -9,17 +9,6 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-/* ================= UBUNTU GNOME (YARU) ================= */<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hi! It’s me, Kaviranga.</title>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<style>
 /* ================= UBUNTU GNOME (YARU) ================= */
 :root {
   --desktop-bg: #f6f5f4;
@@ -312,69 +301,3 @@ if (localStorage.getItem("theme") === "dark") {
 
 </body>
 </html>
-
-:root {
-  --desktop-bg: #f6f5f4;
-  --panel-bg: #2c001e;
-  --panel-text: #ffffff;
-
-  --window-bg: #ffffff;
-  --window-border: #d3d3d3;
-  --window-title-bg: #f6f5f4;
-  --window-title-text: #2c001e;
-
-  --text: #2c001e;
-  --muted: #6b6b6b;
-  --accent: #e95420;
-}
-
-/* ================= DARK MODE ================= */
-body.dark {
-  --desktop-bg: #1e1e1e;
-  --panel-bg: #000000;
-  --panel-text: #ffffff;
-
-  --window-bg: #2b2b2b;
-  --window-border: #3c3c3c;
-  --window-title-bg: #303030;
-  --window-title-text: #ffffff;
-
-  --text: #eeeeee;
-  --muted: #b5b5b5;
-  --accent: #ff7a45;
-}
-
-/* ================= GLOBAL ================= */
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: "Ubuntu", "Cantarell", system-ui, sans-serif;
-  background: var(--desktop-bg);
-  color: var(--text);
-  transition: background .25s ease, color .25s ease;
-}
-
-/* ================= TOP BAR ================= */
-.panel {
-  height: 32px;
-  background: var(--panel-bg);
-  color: var(--panel-text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.8rem;
-  font-size: 0.85rem;
-}
-
-.panel .right {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.theme-toggle {
-  background: none;
-  border: none;
-  color: var(--panel-text);
-  cursor
